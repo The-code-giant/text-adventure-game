@@ -1,14 +1,34 @@
-import { StyleSheet } from 'react-native';
-
+import { ImageBackground, StyleSheet, SafeAreaView } from 'react-native';
 import EditScreenInfo from '../../components/EditScreenInfo';
 import { Text, View } from '../../components/Themed';
-
+import SlideShow from '../../components/topSlideShow';
+const SLIDE_DATA = [
+  {
+    id: 1,
+    title: 'Slide 1',
+    image: require('../../assets/images/slides/wizard-1.png'),
+    tags: ['10 mins', 'Fantasy'],
+  },
+  {
+    id: 2,
+    title: 'Slide 2',
+    image: require('../../assets/images/slides/space-1.png'),
+    tags: ['14 mins', 'si-fi'],
+  },
+  {
+    id: 3,
+    title: 'Slide 3',
+    image: require('../../assets/images/slides/woden-angel.png'),
+    tags: ['8 mins', 'Fantasy'],
+  },
+];
 export default function TabOneScreen() {
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Tab One</Text>
-      <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-      <EditScreenInfo path="app/(tabs)/index.tsx" />
+   <View>
+      <SlideShow slides={SLIDE_DATA} />
+      <ImageBackground source={require('../../assets/images/Content.png')}>
+        <EditScreenInfo path="app/(tabs)/index.tsx" />
+      </ImageBackground>
     </View>
   );
 }
