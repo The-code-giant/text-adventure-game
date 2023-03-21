@@ -1,0 +1,174 @@
+{
+  "start": {
+    "scenario": "You are Space Pup, the brave and adorable hero of the galaxy. The people of the Planet of the Lost Moon need your help to find their missing moon. Will you accept the mission?",
+    "options": [
+      {
+        "name": "Accept the mission",
+        "path": "accept-mission",
+        "condition": null,
+        "action": null
+      },
+      {
+        "name": "Stay home and rest",
+        "path": "stay-home",
+        "condition": null,
+        "action": null
+      }
+    ]
+  },
+
+  "accept-mission": {
+    "scenario": "You have accepted the mission to find the Lost Moon. Your first clue leads you to the windy Planet Breezara. What would you like to do?",
+    "options": [
+      {
+        "name": "Navigate the maze",
+        "path": "maze",
+        "condition": null,
+        "action": {
+          "type": "minigame",
+          "name": "Maze Runner",
+          "description": "Find your way through the windy maze to locate the first Moon Crystal!",
+          "rules": "Move through the maze while avoiding obstacles and wind gusts. Reach the end of the maze to find the Moon Crystal."
+        }
+      },
+      {
+        "name": "Fly to another planet",
+        "path": "other-planet",
+        "condition": null,
+        "action": null
+      }
+    ]
+  },
+
+  "stay-home": {
+    "scenario": "You have decided to stay home and rest. As you doze off, you dream of the Lost Moon and the people who need your help. What will you do?",
+    "options": [
+      {
+        "name": "Wake up and accept the mission",
+        "path": "accept-mission",
+        "condition": null,
+        "action": null
+      },
+      {
+        "name": "Continue sleeping",
+        "path": "stay-home",
+        "condition": null,
+        "action": null
+      }
+    ]
+  },
+
+  "maze": {
+    "scenario": "You have successfully navigated the maze and found the first Moon Crystal. Your journey continues as you travel to the aquatic world of Aqua-Tailia. What would you like to do?",
+    "options": [
+      {
+        "name": "Complete the memory game",
+        "path": "memory-game",
+        "condition": null,
+        "action": {
+          "type": "minigame",
+          "name": "Memory Splash",
+          "description": "Match the underwater symbols to unlock the treasure chest and find the second Moon Crystal!",
+          "rules": "Flip the cards to reveal the symbols. Match all pairs of symbols to complete the game and unlock the treasure chest containing the Moon Crystal."
+        }
+      },
+      {
+        "name": "Fly to another planet",
+        "path": "other-planet",
+        "condition": null,
+        "action": null
+      }
+    ]
+  },
+
+  "other-planet": {
+    "scenario": "You have decided to fly to another planet in search of the remaining Moon Crystals. Your adventure continues...",
+    "options": [
+      {
+        "name": "Visit the shadowy Planet Nocturnia",
+        "path": "nocturnia",
+        "condition": null,
+        "action": null
+      },
+      {
+        "name": "Explore the lush Planet Junglea",
+        "path": "junglea",
+        "condition": null,
+        "action": null
+      }
+    ]
+  },
+  "nocturnia": {
+    "scenario": "You have arrived at the shadowy Planet Nocturnia. The mysterious inhabitants are willing to give you the Moon Crystal if you can solve their riddles. What will you do?",
+    "options": [
+      {
+        "name": "Solve the riddles",
+        "path": "solve-riddles",
+        "condition": null,
+        "action": {
+          "type": "minigame",
+          "name": "Riddle Master",
+          "description": "Solve the riddles posed by the mysterious inhabitants to obtain the third Moon Crystal!",
+          "rules": "Listen to the riddles carefully and choose the correct answer. Solve all riddles to obtain the Moon Crystal."
+        }
+      },
+      {
+        "name": "Fly to another planet",
+        "path": "other-planet",
+        "condition": null,
+        "action": null
+      }
+    ]
+  },
+
+  "junglea": {
+    "scenario": "You have landed on the lush Planet Junglea. Your friend, Comet Whiskers, has been captured by mischievous space monkeys. Help Comet Whiskers escape to find the final Moon Crystal. What will you do?",
+    "options": [
+      {
+        "name": "Rescue Comet Whiskers",
+        "path": "rescue-comet",
+        "condition": null,
+        "action": {
+          "type": "minigame",
+          "name": "Jungle Rescue",
+          "description": "Navigate through the dense jungle and outsmart the space monkeys to rescue Comet Whiskers and find the final Moon Crystal!",
+          "rules": "Move through the jungle while avoiding the space monkeys and their traps. Reach Comet Whiskers to rescue him and find the Moon Crystal."
+        }
+      },
+      {
+        "name": "Fly to another planet",
+        "path": "other-planet",
+        "condition": null,
+        "action": null
+      }
+    ]
+  },
+
+  "rescue-comet": {
+    "scenario": "You have successfully rescued Comet Whiskers and found the final Moon Crystal. With all the Moon Crystals in your possession, you return to the Planet of the Lost Moon. Together with your friends, you restore the moon and save the planet. Congratulations, Space Pup!",
+    "options": [
+      {
+        "name": "Celebrate your victory",
+        "path": "celebrate",
+        "condition": null,
+        "action": null
+      },
+      {
+        "name": "Embark on a new adventure",
+        "path": "new-adventure",
+        "condition": null,
+        "action": null
+      }
+    ]
+  },
+
+  "celebrate": {
+    "scenario": "You join the people of the Lost Moon in celebration of their restored moon and your heroic deeds. You and your friends are hailed as heroes of the galaxy. The end.",
+    "options": []
+  },
+
+  "new-adventure": {
+    "scenario": "With the Lost Moon restored, you and your friends, Comet Whiskers and Hootron, embark on a new adventure, ready to face any challenges that may come your way. The end.",
+    "options": []
+  }
+}
