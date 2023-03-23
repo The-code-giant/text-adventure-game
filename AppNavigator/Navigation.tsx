@@ -21,7 +21,6 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { HomeParamList, RootTabParamList, RootTabScreenProps } from "../types";
 import HomeScreen from "../Screens/HomeScreen";
 import HistoryScreen from "../Screens/HistoryScreen";
-import History from "../assets/images/History.svg";
 import GameSenarioScreen from "../Screens/GameSenarioScreen";
 
 export default function Navigation() {
@@ -37,10 +36,10 @@ const Stack1 = createStackNavigator<HomeParamList>();
 const StackNavigator = () => {
   return (
     <Stack1.Navigator
-      initialRouteName="Home"
+      initialRouteName="BottomTab"
       screenOptions={{ headerShown: false }}
     >
-      <Stack1.Screen name="Home" component={BottomTabNavigator} />
+      <Stack1.Screen name="BottomTab" component={BottomTabNavigator} />
       <Stack1.Screen name="GameSenarioScreen" component={GameSenarioScreen} />
     </Stack1.Navigator>
   );
@@ -49,6 +48,7 @@ const StackNavigator = () => {
 //Bottom Tab navigator for navigate to other home from page bottom
 const BottomTab = createBottomTabNavigator<RootTabParamList>();
 function BottomTabNavigator() {
+  const [onPress, setOnPress] = React.useState(true);
   return (
     <BottomTab.Navigator
       initialRouteName="Home"
@@ -70,7 +70,12 @@ function BottomTabNavigator() {
             //   color={color}
             //   size={24}
             // />
-            <AntDesign name="home" size={24} color="white" />
+            <AntDesign
+              onPress={() => navigation.navigate("Home")}
+              name="home"
+              size={24}
+              color={color}
+            />
           ),
           headerRight: () => (
             <Pressable
@@ -89,7 +94,12 @@ function BottomTabNavigator() {
         options={({ navigation }: RootTabScreenProps<"History">) => ({
           title: "History ",
           tabBarIcon: ({ color }) => (
-            <FontAwesome name="history" size={24} color="white" />
+            <FontAwesome
+              onPress={() => navigation.navigate("History")}
+              name="history"
+              size={24}
+              color={color}
+            />
           ),
           headerRight: () => (
             <Pressable

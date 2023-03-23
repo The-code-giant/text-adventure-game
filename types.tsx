@@ -27,6 +27,7 @@ export type HomeParamList = {
   Home: undefined;
   History: undefined;
   GameSenarioScreen: undefined;
+  BottomTab: undefined;
 };
 export type RootTabScreenProps<Screen extends keyof RootTabParamList> =
   CompositeScreenProps<

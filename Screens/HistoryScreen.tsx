@@ -12,28 +12,25 @@ import {
 
 import { DATA } from "../constants/mock";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import * as SQLite from "expo-sqlite";
+import { useIsFocused } from "@react-navigation/native";
 
 type ItemProps = { title: string; url: any; tags: any };
 export default function HistoryScreen() {
-  const db = SQLite.openDatabase("game_adventure.db");
-
   const [historyList, setHistoryList] = useState();
-  const [newItem, setNewItem] = useState();
-  const [historyItem, setHistoryItem] = useState();
-
   let list: any;
-  const getLikedList = async () => {
+  const getHistoryList = async () => {
     list = await AsyncStorage.getItem("addedPlayedGames");
     setHistoryList(JSON.parse(list).addedPlayedGames);
-    setNewItem(JSON.parse(list).addedPlayedGames);
+    // setNewItem(JSON.parse(list).addedPlayedGames);
   };
+  const isFocused = useIsFocused();
   useEffect(() => {
-    getLikedList();
-  }, []);
-
-  const Item = ({ title, url, tags }: ItemProps) => (
-    <ImageBackground source={{ uri: url }} style={styles.item}>
+    if (isFocused) {
+      getHistoryList();
+    }
+  }, [isFocused]);
+  const Item = ({ item }) => (
+    <ImageBackground source={{ uri: item.url }} style={styles.item}>
       <View
         style={{
           position: "absolute",
@@ -43,11 +40,20 @@ export default function HistoryScreen() {
         }}
       >
         <Text style={{ fontSize: 25, color: "white", fontWeight: "500" }}>
-          {title}
+          {item.title}
         </Text>
         <View style={styles.slideTagsContainer}>
-          {tags.map((tag: any) => (
-            <Text key={tag} style={styles.slideTag}>
+          {item.tags.map((tag: any, index: number) => (
+            <Text
+              key={tag}
+              style={[
+                styles.slideTag,
+                {
+                  backgroundColor:
+                    index > 0 ? "rgba(169, 151, 194, 0.5)" : "#7A53B2",
+                },
+              ]}
+            >
               {tag}
             </Text>
           ))}
@@ -64,10 +70,26 @@ export default function HistoryScreen() {
       <View style={StyleSheet.absoluteFill}>
         <Text style={styles.header}>Your History</Text>
         <FlatList
-          contentContainerStyle={{ paddingBottom: 50 }}
+          contentContainerStyle={{ paddingBottom: 20 }}
           data={historyList}
-          renderItem={({ item }) => <Item {...item} />}
-          keyExtractor={(item) => item.title}
+          renderItem={({ item }) => <Item item={item} />}
+          keyExtractor={(item, index) => item.id}
+          ListEmptyComponent={() => {
+            return (
+              <Text
+                style={{
+                  fontFamily: "AdineueBold",
+                  fontSize: 18,
+                  alignSelf: "center",
+                  color: "white",
+                  margin: 30,
+                  marginTop: 100,
+                }}
+              >
+                Have not played any game yet!
+              </Text>
+            );
+          }}
         />
       </View>
     </View>

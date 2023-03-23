@@ -11,6 +11,7 @@ import {
   useWindowDimensions,
   RefreshControl,
   ImageBackground,
+  TouchableOpacity,
 } from "react-native";
 
 const { width } = Dimensions.get("window");
@@ -94,11 +95,14 @@ function Indicator({ i, scrollValue }) {
     outputRange: [-20, 0, 20],
   });
   return (
-    <View style={styles.indicator}>
+    <TouchableOpacity
+      onPress={() => console.log("slider indicator")}
+      style={styles.indicator}
+    >
       <Animated.View
         style={[styles.activeIndicator, { transform: [{ translateX }] }]}
       />
-    </View>
+    </TouchableOpacity>
   );
 }
 
@@ -107,7 +111,7 @@ export default Slider;
 const styles = StyleSheet.create({
   container: {
     paddingVertical: 3,
-    height: "90%",
+    height: "95%",
     width: "100%",
     // backgroundColor: 'red',
     // marginTop: 20,

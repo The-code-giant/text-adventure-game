@@ -4,6 +4,7 @@ import {
   SafeAreaView,
   StyleSheet,
   ImageBackground,
+  Dimensions,
 } from "react-native";
 import React, { useState } from "react";
 import Slider from "../components/Slider";
@@ -11,6 +12,7 @@ import LatestStoriesCard from "../components/LatestStoriesCard";
 import { DATA } from "../constants/mock";
 import { ScrollView } from "react-native";
 
+const window = Dimensions.get("window");
 const HomeScreen = (props: any) => {
   const [slider, setSlider] = useState([
     {
@@ -45,10 +47,11 @@ const HomeScreen = (props: any) => {
           marginTop: -40,
         }}
       >
-        <ScrollView contentContainerStyle={{ paddingBottom: 50 }}>
+        <ScrollView contentContainerStyle={{ paddingBottom: 20 }}>
           <Text style={styles.title}>Latest Stories</Text>
           <ScrollView
-            style={{ height: 150 }}
+            showsHorizontalScrollIndicator={false}
+            style={{ height: 170 }}
             scrollEnabled={true}
             horizontal={true}
             // style={{ backgroundColor: "green" }}
@@ -60,7 +63,8 @@ const HomeScreen = (props: any) => {
           </ScrollView>
           <Text style={styles.title}>Science-fiction</Text>
           <ScrollView
-            style={{ height: 150 }}
+            showsHorizontalScrollIndicator={false}
+            style={{ height: 170 }}
             scrollEnabled={true}
             horizontal={true}
             // style={{ backgroundColor: "green" }}
@@ -85,7 +89,7 @@ const styles = StyleSheet.create({
     fontFamily: "AdineueBold",
     marginTop: 10,
     marginBottom: -15,
-    fontSize: 16,
+    fontSize: 18,
   },
 });
 export default HomeScreen;

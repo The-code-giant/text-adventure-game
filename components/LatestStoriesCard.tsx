@@ -9,38 +9,30 @@ import {
 import React, { Component, useEffect, useState } from "react";
 import Colors from "../constants/Colors";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import * as SQLite from "expo-sqlite";
+
+// import * as SQLite from "react-native-sqlite-storage";
 
 const LatestStoriesCard = ({ item, navigation }) => {
-  const db = SQLite.openDatabase("game_adventure.db");
   const [addedPlayedGames, setAddedPlayedGames] = useState([]);
   const [historyItem, setHistoryItem] = useState([]);
   const onHandleAddedPlayedGamesToHistory = async () => {
     addedPlayedGames.push(item);
-    let addedPlayedGame = {};
-    if (historyItem.length < 1) {
+    let list: any = await AsyncStorage.getItem("addedPlayedGames");
+    const l = JSON.parse(list);
+    console.log("LLLLLLLLLL", list, "LDDDDD");
+    let addedPlayedGame: any;
+    if (list == null) {
       addedPlayedGame = {
-        addedPlayedGames: [...addedPlayedGames],
+        addedPlayedGames: [item],
       };
+      AsyncStorage.setItem("addedPlayedGames", JSON.stringify(addedPlayedGame));
     } else {
       addedPlayedGame = {
-        addedPlayedGames: [...historyItem, ...addedPlayedGames],
+        addedPlayedGames: [...JSON.parse(list).addedPlayedGames, item],
       };
+      console.log("ITEEEEEEEm3333", addedPlayedGame, "4444");
+      AsyncStorage.setItem("addedPlayedGames", JSON.stringify(addedPlayedGame));
     }
-
-    await AsyncStorage.setItem(
-      "addedPlayedGames",
-      JSON.stringify(addedPlayedGame)
-    );
-    list = await AsyncStorage.getItem("addedPlayedGames");
-    setHistoryItem(JSON.parse(list).addedPlayedGames);
-    console.log(
-      "ITEEEEEEEEEEM",
-      addedPlayedGame,
-      "222222222",
-      historyItem,
-      "44444444"
-    );
   };
 
   return (
@@ -52,19 +44,15 @@ const LatestStoriesCard = ({ item, navigation }) => {
       }}
       style={styles.latestStoriesCard}
     >
-      <Image
-        source={{ uri: item.url }}
-        style={{
-          height: "95%",
-          width: "100%",
-          alignSelf: "center",
-          marginTop: 20,
-          borderRadius: 10,
-        }}
-      />
+      <Image source={{ uri: item.url }} style={styles.image} />
       <View style={styles.titleTagContainer}>
         <Text style={styles.title}>{item.title}</Text>
-        <View style={{ flexDirection: "row" }}>
+        <View
+          style={{
+            flexDirection: "row",
+            // paddingBottom: 10,
+          }}
+        >
           {item.tags.map((item, index) => {
             return (
               <View
@@ -72,7 +60,8 @@ const LatestStoriesCard = ({ item, navigation }) => {
                   marginRight: 9,
                   paddingHorizontal: 6,
                   paddingVertical: 2,
-                  backgroundColor: index === 0 ? "#7A53B2" : "#cbbdde",
+                  backgroundColor:
+                    index === 0 ? "#7A53B2" : "rgba(169, 151, 194, 0.5)",
                   borderRadius: 5,
                 }}
               >
@@ -98,7 +87,14 @@ const styles = StyleSheet.create({
   },
   titleTagContainer: {
     marginLeft: 10,
-    bottom: 50,
+    bottom: "43%",
+  },
+  image: {
+    height: "95%",
+    width: "100%",
+    alignSelf: "center",
+    marginTop: 20,
+    borderRadius: 10,
   },
   title: {
     color: Colors.dark.text,

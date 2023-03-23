@@ -16,6 +16,9 @@ import GameJsonFile from "./GameJsonFile.json";
 const HEIGHT = Dimensions.get("window").height;
 const GameSenarioScreen = (props: any) => {
   const [path, setPath] = useState("start");
+  const [imageUrl, setImageUrl] = useState(
+    "https://i.redd.it/ilkvyo5a1yy81.png"
+  );
 
   return (
     <View style={styles.container}>
@@ -30,10 +33,7 @@ const GameSenarioScreen = (props: any) => {
             height: HEIGHT,
           }}
         >
-          <ImageBackground
-            style={{ flex: 1 }}
-            source={require("../assets/images/slides/space-1.png")}
-          >
+          <ImageBackground style={{ flex: 1 }} source={{ uri: imageUrl }}>
             <View style={styles.backContainer}>
               <TouchableOpacity
                 style={styles.backButton}
@@ -50,6 +50,7 @@ const GameSenarioScreen = (props: any) => {
               borderTopLeftRadius: 30,
               borderTopRightRadius: 30,
               paddingTop: 20,
+              marginTop: -30,
             }}
             source={require("../assets/images/top-cap.png")}
           >
@@ -59,6 +60,7 @@ const GameSenarioScreen = (props: any) => {
                   style={{
                     color: Colors.dark.light,
                     fontFamily: "AdineuePro",
+                    lineHeight: 17,
                   }}
                 >
                   {GameJsonFile[path].scenario}
@@ -74,6 +76,13 @@ const GameSenarioScreen = (props: any) => {
                         onPress={() => {
                           console.log("START", item.path);
                           setPath(item.path);
+                          setImageUrl(item.url);
+                          console.log(
+                            "IMAGAEURL>>>11111",
+                            item.url,
+                            "IMGEEEEEE222",
+                            imageUrl
+                          );
                         }}
                       >
                         <Text

@@ -10,7 +10,7 @@ import AppLoading from "expo-app-loading";
 const fetchFonts = () => {
   return Font.loadAsync({
     AdineueBold: require("./assets/fonts/adineue-PRO-Bold.ttf"),
-    AdineuePro: require("./assets/fonts/adineue-PRO.ttf"),
+    AdineuePro: require("./assets/fonts/adineue PRO.ttf"),
     SpaceMono: require("./assets/fonts/SpaceMono-Regular.ttf"),
   });
 };
