@@ -8,7 +8,7 @@ import {
   ImageBackground,
   ScrollView,
 } from "react-native";
-import React, {useState } from "react";
+import React, { useState } from "react";
 import Colors from "../constants/Colors";
 import { AntDesign } from "@expo/vector-icons";
 import GameJsonFile from "./GameJsonFile.json";
@@ -22,7 +22,7 @@ const GameSenarioScreen = (props: any) => {
   );
   const [history, setHistory] = useState([
     {
-      Image: require("../assets/images/slides/wizard-1.png"),
+      Image: require("../assets/images/game8.png"),
     },
     {
       Image: require("../assets/images/game1.png"),
@@ -40,10 +40,10 @@ const GameSenarioScreen = (props: any) => {
       Image: require("../assets/images/game5.png"),
     },
     {
-      Image: require("../assets/images/game6.png"),
+      Image: require("../assets/images/slides/woden-angel.png"),
     },
     {
-      Image: require("../assets/images/game6.png"),
+      Image: require("../assets/images/slides/space-1.png"),
     },
     {
       Image: require("../assets/images/s2.png"),
