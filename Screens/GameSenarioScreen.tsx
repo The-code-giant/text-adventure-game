@@ -8,7 +8,7 @@ import {
   ImageBackground,
   ScrollView,
 } from "react-native";
-import React, { Component, useState } from "react";
+import React, {useState } from "react";
 import Colors from "../constants/Colors";
 import { AntDesign } from "@expo/vector-icons";
 import GameJsonFile from "./GameJsonFile.json";
@@ -16,10 +16,42 @@ import GameJsonFile from "./GameJsonFile.json";
 const HEIGHT = Dimensions.get("window").height;
 const GameSenarioScreen = (props: any) => {
   const [path, setPath] = useState("start");
+  let [counter, setCounter] = useState(0);
   const [imageUrl, setImageUrl] = useState(
-    "https://i.redd.it/ilkvyo5a1yy81.png"
+    require("../assets/images/slides/wizard-1.png")
   );
-
+  const [history, setHistory] = useState([
+    {
+      Image: require("../assets/images/slides/wizard-1.png"),
+    },
+    {
+      Image: require("../assets/images/game1.png"),
+    },
+    {
+      Image: require("../assets/images/game2.png"),
+    },
+    {
+      Image: require("../assets/images/game3.png"),
+    },
+    {
+      Image: require("../assets/images/game4.png"),
+    },
+    {
+      Image: require("../assets/images/game5.png"),
+    },
+    {
+      Image: require("../assets/images/game6.png"),
+    },
+    {
+      Image: require("../assets/images/game6.png"),
+    },
+    {
+      Image: require("../assets/images/s2.png"),
+    },
+    {
+      Image: require("../assets/images/game8.png"),
+    },
+  ]);
   return (
     <View style={styles.container}>
       <Image
@@ -33,27 +65,26 @@ const GameSenarioScreen = (props: any) => {
             height: HEIGHT,
           }}
         >
-          <ImageBackground style={{ flex: 1 }} source={{ uri: imageUrl }}>
+          <ImageBackground style={{ flex: 1 }} source={imageUrl}>
             <View style={styles.backContainer}>
               <TouchableOpacity
                 style={styles.backButton}
-                onPress={() => props.navigation.goBack()}
+                onPress={() => {
+                  props.navigation.goBack();
+                }}
               >
                 <AntDesign name="left" size={20} color="white" />
               </TouchableOpacity>
             </View>
           </ImageBackground>
           <ImageBackground
-            style={{
-              flex: 1,
-              overflow: "hidden",
-              borderTopLeftRadius: 30,
-              borderTopRightRadius: 30,
-              paddingTop: 20,
-              marginTop: -30,
-            }}
-            source={require("../assets/images/top-cap.png")}
+            style={styles.backgroundImg}
+            source={require("../assets/images/sb.png")}
           >
+            <Image
+              source={require("../assets/images/rt.png")}
+              style={styles.modalImg}
+            />
             <ScrollView style={{ flex: 1 }}>
               <View style={{ padding: 20, paddingTop: -20 }}>
                 <Text
@@ -61,11 +92,13 @@ const GameSenarioScreen = (props: any) => {
                     color: Colors.dark.light,
                     fontFamily: "AdineuePro",
                     lineHeight: 17,
+                    marginTop: 10,
                   }}
                 >
                   {GameJsonFile[path].scenario}
                 </Text>
                 <ScrollView
+                  style={{ marginBottom: 50 }}
                   horizontal={true}
                   showsHorizontalScrollIndicator={false}
                 >
@@ -74,15 +107,13 @@ const GameSenarioScreen = (props: any) => {
                       <TouchableOpacity
                         style={styles.optionBtn}
                         onPress={() => {
-                          console.log("START", item.path);
+                          setCounter(item.path == path ? counter : counter + 1);
+                          if (counter >= 10) {
+                            setCounter(0);
+                          }
+
                           setPath(item.path);
-                          setImageUrl(item.url);
-                          console.log(
-                            "IMAGAEURL>>>11111",
-                            item.url,
-                            "IMGEEEEEE222",
-                            imageUrl
-                          );
+                          setImageUrl(history[counter].Image);
                         }}
                       >
                         <Text
@@ -136,6 +167,22 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     marginRight: 7,
     marginTop: 50,
+  },
+  backgroundImg: {
+    flex: 1,
+    overflow: "hidden",
+    borderTopLeftRadius: 30,
+    borderTopRightRadius: 30,
+    paddingTop: 20,
+    marginTop: -30,
+    marginBottom: -50,
+  },
+  modalImg: {
+    width: "20%",
+    alignSelf: "center",
+    borderRadius: 10,
+    height: 3,
+    marginTop: -5,
   },
 });
 

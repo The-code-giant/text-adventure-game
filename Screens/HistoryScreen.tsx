@@ -3,8 +3,6 @@ import {
   SafeAreaView,
   FlatList,
   StyleSheet,
-  StatusBar,
-  ImageBackground,
   Image,
   View,
   Text,
@@ -21,7 +19,6 @@ export default function HistoryScreen() {
   const getHistoryList = async () => {
     list = await AsyncStorage.getItem("addedPlayedGames");
     setHistoryList(JSON.parse(list).addedPlayedGames);
-    // setNewItem(JSON.parse(list).addedPlayedGames);
   };
   const isFocused = useIsFocused();
   useEffect(() => {
@@ -30,36 +27,12 @@ export default function HistoryScreen() {
     }
   }, [isFocused]);
   const Item = ({ item }) => (
-    <ImageBackground source={{ uri: item.url }} style={styles.item}>
-      <View
-        style={{
-          position: "absolute",
-          bottom: 20,
-          left: 20,
-          backgroundColor: "transparent",
-        }}
-      >
-        <Text style={{ fontSize: 25, color: "white", fontWeight: "500" }}>
-          {item.title}
-        </Text>
-        <View style={styles.slideTagsContainer}>
-          {item.tags.map((tag: any, index: number) => (
-            <Text
-              key={tag}
-              style={[
-                styles.slideTag,
-                {
-                  backgroundColor:
-                    index > 0 ? "rgba(169, 151, 194, 0.5)" : "#7A53B2",
-                },
-              ]}
-            >
-              {tag}
-            </Text>
-          ))}
-        </View>
-      </View>
-    </ImageBackground>
+    <View style={styles.itemContainer}>
+      <Image
+        source={item.url}
+        style={{ width: "90%", height: 180, borderRadius: 20 }}
+      />
+    </View>
   );
   return (
     <View style={styles.container}>
@@ -110,14 +83,14 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     color: "white",
   },
-  item: {
-    backgroundColor: "#f9c2ff",
-    height: 170,
+  itemContainer: {
+    height: 180,
     borderRadius: 20,
     overflow: "hidden",
-    padding: 20,
     marginVertical: 8,
-    marginHorizontal: 20,
+    marginHorizontal: 10,
+    justifyContent: "center",
+    alignItems: "center",
   },
   title: {
     fontSize: 32,

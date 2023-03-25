@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import React, { useState, useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import {
   Animated,
   Dimensions,
@@ -8,30 +8,16 @@ import {
   View,
   Text,
   Image,
-  useWindowDimensions,
-  RefreshControl,
   ImageBackground,
   TouchableOpacity,
 } from "react-native";
+import Colors from "../constants/Colors";
 
 const { width } = Dimensions.get("window");
-const data = ["brown", "orange", "red", "blue", "green"];
 
-const wait = (timeout: any) => {
-  return new Promise((resolve) => setTimeout(resolve, timeout));
-};
 const Slider = ({ slider }) => {
-  const [orientation, setOrientation] = useState(false);
-  const window = useWindowDimensions();
-
   useEffect(() => {
     console.log("SLIDER", slider);
-  }, []);
-  const [refreshing, setRefreshing] = useState(false);
-
-  const onRefresh = React.useCallback(() => {
-    setRefreshing(true);
-    wait(2000).then(() => setRefreshing(false));
   }, []);
   const scrollValue = useRef(new Animated.Value(0)).current;
 
@@ -60,6 +46,36 @@ const Slider = ({ slider }) => {
                   resizeMode: "contain",
                 }}
               />
+              <View style={styles.titleTagContainer}>
+                <Text style={styles.title}>{x.Name}</Text>
+                <View
+                  style={{
+                    flexDirection: "row",
+                    // paddingBottom: 10,
+                  }}
+                >
+                  {x.Tag.map((item, index) => {
+                    return (
+                      <View
+                        style={{
+                          marginRight: 9,
+                          paddingHorizontal: 6,
+                          paddingVertical: 2,
+                          backgroundColor:
+                            index === 0
+                              ? "#7A53B2"
+                              : "rgba(169, 151, 194, 0.5)",
+                          borderRadius: 5,
+                        }}
+                      >
+                        <Text style={{ color: Colors.dark.text, fontSize: 13 }}>
+                          {item}
+                        </Text>
+                      </View>
+                    );
+                  })}
+                </View>
+              </View>
             </View>
           ))}
         </ScrollView>
@@ -69,7 +85,6 @@ const Slider = ({ slider }) => {
         source={require("../assets/images/top-cap.png")}
         style={{
           width: "100%",
-          //   overflow: "hidden",
           height: "35%",
           borderTopEndRadius: 40,
           borderTopStartRadius: 40,
@@ -113,8 +128,6 @@ const styles = StyleSheet.create({
     paddingVertical: 3,
     height: "95%",
     width: "100%",
-    // backgroundColor: 'red',
-    // marginTop: 20,
   },
   image: {
     width: "100%",
@@ -152,5 +165,16 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     borderColor: "#fff",
     borderRadius: 10,
+  },
+  titleTagContainer: {
+    marginLeft: 20,
+    bottom: "43%",
+  },
+
+  title: {
+    color: Colors.dark.text,
+    fontFamily: "AdineueBold",
+    marginBottom: 4,
+    fontSize: 20,
   },
 });

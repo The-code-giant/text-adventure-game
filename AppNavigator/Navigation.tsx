@@ -65,11 +65,6 @@ function BottomTabNavigator() {
         options={({ navigation }: RootTabScreenProps<"Home">) => ({
           title: "Home",
           tabBarIcon: ({ color }) => (
-            // <Ionicons
-            //   name={Platform.OS === "android" ? "home" : "ios-home"}
-            //   color={color}
-            //   size={24}
-            // />
             <AntDesign
               onPress={() => navigation.navigate("Home")}
               name="home"

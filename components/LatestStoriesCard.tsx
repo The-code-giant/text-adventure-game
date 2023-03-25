@@ -1,16 +1,7 @@
-import {
-  Text,
-  View,
-  StyleSheet,
-  ImageBackground,
-  Image,
-  TouchableOpacity,
-} from "react-native";
-import React, { Component, useEffect, useState } from "react";
+import { StyleSheet, Image, TouchableOpacity } from "react-native";
+import React, { useState } from "react";
 import Colors from "../constants/Colors";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-
-// import * as SQLite from "react-native-sqlite-storage";
 
 const LatestStoriesCard = ({ item, navigation }) => {
   const [addedPlayedGames, setAddedPlayedGames] = useState([]);
@@ -19,7 +10,6 @@ const LatestStoriesCard = ({ item, navigation }) => {
     addedPlayedGames.push(item);
     let list: any = await AsyncStorage.getItem("addedPlayedGames");
     const l = JSON.parse(list);
-    console.log("LLLLLLLLLL", list, "LDDDDD");
     let addedPlayedGame: any;
     if (list == null) {
       addedPlayedGame = {
@@ -30,7 +20,6 @@ const LatestStoriesCard = ({ item, navigation }) => {
       addedPlayedGame = {
         addedPlayedGames: [...JSON.parse(list).addedPlayedGames, item],
       };
-      console.log("ITEEEEEEEm3333", addedPlayedGame, "4444");
       AsyncStorage.setItem("addedPlayedGames", JSON.stringify(addedPlayedGame));
     }
   };
@@ -39,13 +28,12 @@ const LatestStoriesCard = ({ item, navigation }) => {
     <TouchableOpacity
       onPress={() => {
         onHandleAddedPlayedGamesToHistory();
-        // queryHandler();
         navigation.navigate("GameSenarioScreen");
       }}
       style={styles.latestStoriesCard}
     >
-      <Image source={{ uri: item.url }} style={styles.image} />
-      <View style={styles.titleTagContainer}>
+      <Image source={item.url} style={styles.image} />
+      {/* <View style={styles.titleTagContainer}>
         <Text style={styles.title}>{item.title}</Text>
         <View
           style={{
@@ -72,16 +60,14 @@ const LatestStoriesCard = ({ item, navigation }) => {
             );
           })}
         </View>
-      </View>
+      </View> */}
     </TouchableOpacity>
   );
 };
 const styles = StyleSheet.create({
   latestStoriesCard: {
-    height: "80%",
-    width: "17%",
-    borderRadius: 25,
-    // backgroundColor: "green",
+    height: 150,
+    width: 220,
     marginLeft: 15,
     marginTop: 10,
   },
@@ -90,11 +76,11 @@ const styles = StyleSheet.create({
     bottom: "43%",
   },
   image: {
-    height: "95%",
+    height: "100%",
     width: "100%",
     alignSelf: "center",
     marginTop: 20,
-    borderRadius: 10,
+    resizeMode: "contain",
   },
   title: {
     color: Colors.dark.text,

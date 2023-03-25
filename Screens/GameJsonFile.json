@@ -5,14 +5,14 @@
       {
         "name": "Accept the mission",
         "path": "accept-mission",
-        "url": "https://www.pcgamesn.com/wp-content/sites/pcgamesn/2021/11/is-new-world-good-now-3-580x334.jpg",
+        "url": "../assets/images/game1.jpg",
         "condition": null,
         "action": null
       },
       {
         "name": "Stay home and rest",
         "path": "stay-home",
-        "url": "https://images.ctfassets.net/umhrp0op95v1/irs7NRRKp4JzWe9XGNrFD/f6c36cdcabfeff921a20ab1857806f0e/LA_ADVANCED_CLASS_DETAILS_DESTROYER_MOBILE.jpg",
+        "url": "../assets/images/game2.jpg",
         "condition": null,
         "action": null
       }
@@ -25,7 +25,7 @@
       {
         "name": "Navigate the maze",
         "path": "maze",
-        "url": "https://assets.reedpopcdn.com/lost-ark-release-time-in-uk-gmt-est-and-pst-9201-1644497408706.jpg/BROK/thumbnail/1600x900/quality/100/lost-ark-release-time-in-uk-gmt-est-and-pst-9201-1644497408706.jpg",
+        "url": "../assets/images/game5.jpg",
         "condition": null,
         "action": {
           "type": "minigame",
@@ -37,7 +37,7 @@
       {
         "name": "Fly to another planet",
         "path": "other-planet",
-        "url": "https://static1-us.millenium.gg/articles/7/26/49/7/@/236176-classes-orig-2-article_m-1.jpg",
+        "url": "../assets/images/game1.jpg",
         "condition": null,
         "action": null
       }
@@ -50,14 +50,14 @@
       {
         "name": "Wake up and accept the mission",
         "path": "accept-mission",
-        "url": "https://images2.minutemediacdn.com/image/upload/c_fill,w_720,ar_16:9,f_auto,q_auto,g_auto/shape/cover/sport/dataimagejpegbase649j4AAQSkZJRgABAQAAAQABAAD2wBDAA-a2880838fce73641485c190b87b7a24f.jpg",
+        "url": "../assets/images/game5.jpg",
         "condition": null,
         "action": null
       },
       {
         "name": "Continue sleeping",
         "path": "stay-home",
-        "url": "https://latestgamestories.com/wp-content/uploads/2022/02/Lost-Ark-Wartungsarbeiten-heute-Neuer-Hotfix-soll-Server-in-Europa.jpg",
+        "url": "../assets/images/game6.jpg",
         "condition": null,
         "action": null
       }
