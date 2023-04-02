@@ -31,6 +31,7 @@ const LatestStoriesCard = ({ item, navigation }) => {
         navigation.navigate("GameSenarioScreen");
       }}
       style={styles.latestStoriesCard}
+      key={item.id}
     >
       <Image source={item.url} style={styles.image} />
       {/* <View style={styles.titleTagContainer}>

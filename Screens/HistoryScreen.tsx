@@ -1,14 +1,6 @@
 import React, { useEffect, useState } from "react";
-import {
-  SafeAreaView,
-  FlatList,
-  StyleSheet,
-  Image,
-  View,
-  Text,
-} from "react-native";
+import { FlatList, StyleSheet, Image, View, Text } from "react-native";
 
-import { DATA } from "../constants/mock";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useIsFocused } from "@react-navigation/native";
 

@@ -10,6 +10,7 @@ import {
   Image,
   ImageBackground,
   TouchableOpacity,
+  SafeAreaView,
 } from "react-native";
 import Colors from "../constants/Colors";
 
@@ -22,7 +23,7 @@ const Slider = ({ slider }) => {
   const scrollValue = useRef(new Animated.Value(0)).current;
 
   return (
-    <View style={{ flex: 1 }}>
+    <SafeAreaView style={{ flex: 1 }}>
       <View style={styles.container}>
         <ScrollView
           scrollEnabled
@@ -36,11 +37,14 @@ const Slider = ({ slider }) => {
           )}
         >
           {slider.map((x, i) => (
-            <View style={[styles.card, { backgroundColor: "gray" }]} key={i}>
+            <View
+              style={[styles.card, { backgroundColor: "#1B182D" }]}
+              key={x.ID}
+            >
               <Image
                 source={x.Image}
                 style={{
-                  width: "100%",
+                  width: width,
                   height: "100%",
                   borderRadius: 1,
                   resizeMode: "contain",
@@ -100,7 +104,7 @@ const Slider = ({ slider }) => {
           ))}
         </View>
       </ImageBackground>
-    </View>
+    </SafeAreaView>
   );
 };
 
